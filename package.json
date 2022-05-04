@@ -5,6 +5,7 @@
   "license": "MIT",
   "main": "index.js",
   "types": "index.d.ts",
+  "repository": "https://github.com/gezakerecsenyi/flatten-subcollection-snapshots",
   "dependencies": {
     "@types/firebase": "^3.2.1",
     "firebase": "^8.10.1"
