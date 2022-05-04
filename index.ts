@@ -4,15 +4,16 @@ import 'firebase/firestore';
 type ObjectArrKeys<T> = {
     [K in keyof T]: T[K] extends object[] ? K : never;
 }[keyof T];
-type DocKeys<T> = Omit<T, ObjectArrKeys<T>>
-type ListedKeys<T, Q extends SubcollectionFlattenerRuleset<T>> = Pick<T, (keyof DocKeys<T>) | Q[number]['collection']>;
-type OptionalNestedData<T, Q extends SubcollectionFlattenerRuleset<T>> =
+
+export type DocKeys<T> = Omit<T, ObjectArrKeys<T>>
+export type ListedKeys<T, Q extends SubcollectionFlattenerRuleset<T>> = Pick<T, (keyof DocKeys<T>) | Q[number]['collection']>;
+export type OptionalNestedData<T, Q extends SubcollectionFlattenerRuleset<T>> =
     DocKeys<T>
     & DeepPartial<Pick<T, Q[number]['collection']>>;
-type DeepPartial<T> = {
+
+export type DeepPartial<T> = {
     [K in keyof T]?: T[K] extends Array<infer R> ? Array<DeepPartial<R>> : DeepPartial<T[K]>
 };
-
 export type SubcollectionFlattenerRuleset<T> = {
     [key in ObjectArrKeys<T>]: {
         collection: key,
